@@ -33,8 +33,8 @@ const Banner = ({title}) => (
 );
 
 const App = () => {
-  const [schedule, setSchedule] = useState({ title: '', courses: [] })
-
+  const [schedule, setSchedule] = useState({ title: '', courses: [] });
+  
   const url = 'https://courses.cs.northwestern.edu/394/data/cs-courses.php';
 
   useEffect(() => {
@@ -45,15 +45,15 @@ const App = () => {
       setSchedule(json);
     }
     fetchSchedule();
-  }, [])
-
+  }, []);
+  
   return (
     <SafeAreaView style={styles.container}>
       <Banner title={schedule.title} />
       <CourseList courses={schedule.courses} />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
