@@ -5,9 +5,9 @@ const getCourseNumber = course => (
     course.id.slice(1)
 )
 
-const Course = ({course, isSelected, select}) => (
+const Course = ({course, select, isSelected}) => (
     <TouchableOpacity style={styles[isSelected ? 'courseButtonSelected' : 'courseButton']}
-        onPress={() => { select(course);}}>
+        onPress={() => select(course) }>
       <Text style={styles.courseText}>
         {`CS ${getCourseNumber(course)}\n${course.meets}`}
       </Text>

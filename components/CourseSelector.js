@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { View } from 'react-native'
-import Course from './Course'
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import Course from './Course';
 
 const CourseSelector = ({courses}) => {
   const [selected, setSelected] = useState([]);
@@ -22,5 +22,15 @@ const CourseSelector = ({courses}) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+    courseList: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+});
 
 export default CourseSelector;
