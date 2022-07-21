@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import TermSelector from './TermSelector';
 import CourseSelector from './CourseSelector';
 
@@ -22,15 +22,5 @@ const terms = Object.values(termMap);
 const getCourseTerm = course => (
     termMap[course.id.charAt(0)]
 );
-
-const styles = StyleSheet.create({
-    courseList: {
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-});
 
 export default CourseList;
