@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { hasConflict } from '../utils/course';
 import Course from './Course';
 
 const CourseSelector = ({courses}) => {
@@ -13,7 +14,8 @@ const CourseSelector = ({courses}) => {
     <View style={styles.courseList}>
       { 
         courses.map(course => (
-          <Course key={course.id} course={course} 
+          <Course key={course.id} course={course}
+          isDisabled={hasConflict(course, selected)}
             select={toggle}
             isSelected={selected.includes(course)}
           />
