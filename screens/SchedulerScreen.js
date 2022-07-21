@@ -2,40 +2,18 @@ import React, { useContext, useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, Text } from 'react-native';
 import CourseList from '../components/Courselist';
 import UserContext from '../UserContext';
-import CourseDetailScreen from './CourseDetailScreen';
-import CourseEditScreen from './CourseEditScreen';
-
-const schedule = {
-  "title": "CS Courses for 2018-2019",
-  "courses": [
-    {
-      "id": "F101",
-      "title": "Computer Science: Concepts, Philosophy, and Connections",
-      "meets": "MWF 11:00-11:50"
-    },
-    {
-      "id": "F110",
-      "title": "Intro Programming for non-majors",
-      "meets": "MWF 10:00-10:50"
-    },
-    {
-      "id": "F111",
-      "title": "Fundamentals of Computer Programming I",
-      "meets": "MWF 13:00-13:50"
-    },
-    {
-      "id": "F211",
-      "title": "Fundamentals of Computer Programming II",
-      "meets": "TuTh 12:30-13:50"
-    }
-  ]
-};
+import { firebase } from '../firebase';
 
 const Banner = ({title}) => (
   <Text style={styles.banner}>{title || '[loading...]'}</Text>
 );
 
-const ScheduleScreen = ({navigation}) => {
+const fixCourses = json => ({
+  ...json,
+  courses: Object.values(json.courses)
+});
+
+const SchedulerScreen = ({navigation}) => {
   const user = useContext(UserContext);
   const canEdit = user && user.role === 'admin'
 
@@ -48,13 +26,10 @@ const ScheduleScreen = ({navigation}) => {
   const url = 'https://courses.cs.northwestern.edu/394/data/cs-courses.php';
 
   useEffect(() => {
-    const fetchSchedule = async () => {
-      const response = await fetch(url);
-      if (!response.ok) throw response;
-      const json = await response.json();
-      setSchedule(json);
-    }
-    fetchSchedule();
+    const db = firebase.database().ref();
+    db.on('value', snap => {
+      if (snap.val()) setSchedule(fixCourses(snap.val()))    ;
+    }, error => console.log(error));
   }, []);
   
   return (
@@ -79,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScheduleScreen;
+export default SchedulerScreen;

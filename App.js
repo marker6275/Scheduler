@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ScheduleScreen from './screens/ScheduleScreen';
+import ScheduleScreen from './screens/SchedulerScreen';
 import CourseDetailScreen from './screens/CourseDetailScreen';
 import CourseEditScreen from './screens/CourseEditScreen';
 import UserContext from './UserContext';
