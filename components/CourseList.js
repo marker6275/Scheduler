@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import TermSelector from './TermSelector';
 import CourseSelector from './CourseSelector';
 
